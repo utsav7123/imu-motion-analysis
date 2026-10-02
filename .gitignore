@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+.env
+data/imu.csv
+data/imu_demo.csv
+outputs/*.csv
+outputs/*.json
+figures/*.png
+site/data/*.json
+site/assets/generated-*.png
