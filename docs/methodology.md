@@ -33,7 +33,7 @@ Timestamp gaps are flagged when a positive interval is more than 2.5 times the e
 Two models are compared:
 
 1. Logistic Regression with standardized features and balanced class weights.
-2. Random Forest with balanced class weights and limited tree depth.
+2. Random Forest with limited tree depth and minimum leaf size.
 
 Macro F1 is used to select the stronger baseline because it gives equal weight to each class.
 
