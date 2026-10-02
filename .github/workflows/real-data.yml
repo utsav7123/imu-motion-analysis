@@ -1,0 +1,39 @@
+name: real-data-check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download UCI IMU dataset
+        run: python src/download_data.py
+
+      - name: Run analysis
+        run: |
+          python src/run_analysis.py --input data/imu.csv
+          python src/build_site_data.py
+
+      - name: Run tests
+        run: pytest -q
+
+      - name: Upload analysis outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: imu-analysis-results
+          path: |
+            outputs/
+            figures/
