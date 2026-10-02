@@ -69,7 +69,6 @@ def train_baselines(windows: pd.DataFrame, random_state: int = 42) -> dict:
         n_estimators=250,
         max_depth=12,
         min_samples_leaf=2,
-        class_weight="balanced",
         random_state=random_state,
         n_jobs=-1,
     )
