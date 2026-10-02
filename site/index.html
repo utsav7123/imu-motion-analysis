@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IMU Motion Analysis | Sensor Data Pipeline</title>
+  <meta name="description" content="A practical accelerometer and gyroscope analysis pipeline with filtering, time-series features, sensor quality checks, and activity classification.">
+  <link rel="canonical" href="https://utsav7123.github.io/imu-motion-analysis/">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="IMU Motion Analysis">
+  <meta property="og:description" content="Filtering, time-series feature extraction, data quality checks, and activity classification for accelerometer and gyroscope data.">
+  <meta property="og:url" content="https://utsav7123.github.io/imu-motion-analysis/">
+  <meta property="og:image" content="https://utsav7123.github.io/imu-motion-analysis/assets/social-card.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"IMU Motion Analysis","codeRepository":"https://github.com/utsav7123/imu-motion-analysis","programmingLanguage":["Python","JavaScript"],"author":{"@type":"Person","name":"Utsav Patel"}}</script>
+  <script src="./assets/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><div class="header"><a class="brand" href="./">IMU Motion Analysis</a><nav aria-label="Primary"><a href="./">Overview</a><a href="./methodology/">Methodology</a><a href="https://github.com/utsav7123/imu-motion-analysis">Source</a></nav></div></header>
+  <main>
+    <p class="eyebrow">Wearable and sensor analytics</p>
+    <h1>From noisy motion signals to an explainable activity baseline.</h1>
+    <p class="lede">This project works through the full IMU analysis path: raw accelerometer and gyroscope readings, data quality checks, filtering, time-series window features, classification, and result review.</p>
+    <div id="status" class="notice" role="status">Loading analysis summary...</div>
+    <section class="metrics" aria-label="Analysis summary">
+      <article class="metric"><div class="metric-label">Sensor rows</div><div class="metric-value" id="rows">...</div></article>
+      <article class="metric"><div class="metric-label">Sampling rate</div><div class="metric-value" id="sampling">...</div></article>
+      <article class="metric"><div class="metric-label">Analysis windows</div><div class="metric-value" id="windows">...</div></article>
+      <article class="metric"><div class="metric-label">Best macro F1</div><div class="metric-value" id="f1">...</div></article>
+    </section>
+    <section class="section"><p class="eyebrow">Signal processing</p><h2>See what filtering changes.</h2><div class="grid"><article class="panel"><img class="figure" src="./assets/generated-filter-comparison.png" alt="Line chart comparing raw and low-pass filtered accelerometer X-axis readings"><p class="caption">A short accelerometer segment before and after low-pass filtering.</p></article><article class="panel"><h3>Why keep both?</h3><p>The raw signal is the evidence. The filtered signal is one interpretation of that evidence. Keeping both makes it possible to inspect whether a filter removes noise or removes movement that actually matters.</p><p><a href="./methodology/">Read the filtering and windowing choices</a></p></article></div></section>
+    <section class="section"><p class="eyebrow">Activity signal</p><h2>Compare motion variability across labels.</h2><div class="grid"><article class="panel"><img class="figure" src="./assets/generated-activity-variability.png" alt="Bar chart comparing acceleration variability across activity labels"><p class="caption">Window-level acceleration variability grouped by activity label.</p></article><article class="panel"><img class="figure" src="./assets/generated-confusion-matrix.png" alt="Confusion matrix for the strongest baseline activity classifier"><p class="caption">Confusion matrix for <strong id="model">the strongest baseline</strong>.</p></article></div></section>
+    <section class="section article"><p class="eyebrow">Data source</p><h2>Public IMU data, not company data.</h2><p>The deployed analysis uses the UCI Accelerometer Gyro Mobile Phone dataset. It contains sequential accelerometer and gyroscope measurements labelled for standing and walking. The dataset is used only as a public learning and portfolio source.</p></section>
+  </main>
+  <footer><div class="footer-inner"><span>Built as a transparent sensor-analysis project with reproducible code.</span><span><a href="./methodology/">Methodology</a> · <a href="https://github.com/utsav7123/imu-motion-analysis">GitHub</a></span></div></footer>
+</body>
+</html>
