@@ -1,0 +1,14 @@
+# IMU Motion Analysis
+
+Portfolio project by Utsav Patel for accelerometer and gyroscope time-series analysis.
+
+## Main pages
+- Overview: https://utsav7123.github.io/imu-motion-analysis/
+- Methodology: https://utsav7123.github.io/imu-motion-analysis/methodology/
+- Source: https://github.com/utsav7123/imu-motion-analysis
+
+## Data source
+The deployed analysis uses UCI Machine Learning Repository dataset 755, Accelerometer Gyro Mobile Phone, licensed CC BY 4.0.
+
+## Pipeline
+The project validates raw IMU data, estimates sampling frequency, applies low-pass filtering, creates overlapping time windows, extracts time and frequency features, checks sensor quality, and compares Logistic Regression with Random Forest activity-classification baselines.
