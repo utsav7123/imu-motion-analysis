@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology | IMU Motion Analysis</title>
+  <meta name="description" content="Methodology for the IMU Motion Analysis project, including validation, Butterworth filtering, overlapping windows, feature extraction, and classification.">
+  <link rel="canonical" href="https://utsav7123.github.io/imu-motion-analysis/methodology/">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/styles.css">
+  <meta property="og:title" content="IMU Motion Analysis Methodology"><meta property="og:description" content="Validation, filtering, windowing, time-series features, sensor quality checks, and model evaluation."><meta property="og:image" content="https://utsav7123.github.io/imu-motion-analysis/assets/social-card.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Overview","item":"https://utsav7123.github.io/imu-motion-analysis/"},{"@type":"ListItem","position":2,"name":"Methodology","item":"https://utsav7123.github.io/imu-motion-analysis/methodology/"}]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="header"><a class="brand" href="../">IMU Motion Analysis</a><nav aria-label="Primary"><a href="../">Overview</a><a href="./">Methodology</a><a href="https://github.com/utsav7123/imu-motion-analysis">Source</a></nav></div></header>
+  <main><article class="article"><p class="eyebrow">Methodology</p><h1>Keep the sensor pipeline easy to inspect.</h1><p class="lede">The analysis is split into small steps so a result can be traced back from a model metric to the window features, filtered signal, and original sensor values.</p>
+  <h2>Validation first</h2><p>The loader requires all six IMU axes, timestamp, and activity fields. Sensor values must be numeric and complete before processing continues.</p>
+  <h2>Sampling rate</h2><p>The pipeline estimates sampling frequency from the median positive timestamp interval. If timestamps cannot produce a plausible value between 5 and 500 Hz, it falls back to 50 Hz and keeps that assumption visible in the report.</p>
+  <h2>Filtering</h2><p>Each accelerometer and gyroscope axis is passed through a fourth-order Butterworth low-pass filter with a default 5 Hz cutoff. The code rejects cutoffs at or above the Nyquist frequency instead of silently applying an invalid filter.</p>
+  <div class="callout"><strong>Important:</strong> 5 Hz is a project default, not a universal motion-analysis setting. Real studies should validate the cutoff against the movement and device.</div>
+  <h2>Windowing</h2><p>The default analysis window is two seconds with 50 percent overlap. Windows are retained only when at least 90 percent of samples share the same activity label.</p>
+  <h2>Features</h2><p>Each filtered axis and vector magnitude receives mean, standard deviation, RMS, range, median, and dominant-frequency features. That gives both time-domain and basic frequency-domain information without turning the pipeline into a black-box model.</p>
+  <h2>Quality checks</h2><p>The report counts timestamp gaps and repeated timestamps, measures exact flatline steps, and uses median absolute deviation to identify unusually extreme values for investigation.</p>
+  <h2>Models</h2><p>Logistic Regression and Random Forest are trained as baselines. Macro F1 selects the stronger model because each activity class should matter, even if class counts differ.</p>
+  <h2>Known limitation</h2><p>The chosen dataset does not list participant identity as a published variable. The baseline therefore uses a stratified window-level split. A stronger next study would use participant IDs and group-based validation to measure generalization to unseen people.</p>
+  </article></main>
+  <footer><div class="footer-inner"><span>Methodology is documented so each assumption can be challenged.</span><span><a href="../">Overview</a> · <a href="https://github.com/utsav7123/imu-motion-analysis">GitHub</a></span></div></footer>
+</body>
+</html>
