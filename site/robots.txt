@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://utsav7123.github.io/imu-motion-analysis/sitemap.xml
